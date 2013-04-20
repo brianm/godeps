@@ -49,6 +49,7 @@ clean:
 # Wipes out the workspace
 clean-workspace: clean
 	rm -rf $(WORKSPACE)
+	rm godeps
 
 # Display useful env vars which can be set to enter
 # the workspace
