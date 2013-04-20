@@ -11,8 +11,8 @@ WORKSPACE=$(PWD)/WORKSPACE
 # in this case it is building the "hello" binary
 # yours will probably be different
 build: test
-	GOPATH=$(WORKSPACE) go install $(PACKAGE)/hello
-	@echo "output: $(WORKSPACE)/bin/hello"	
+	GOPATH=$(WORKSPACE) go install $(PACKAGE)
+	cp $(WORKSPACE)/bin/godeps .
 
 # Run tests in root, and non {WORKSPACE .git} subdirs
 # of the root
