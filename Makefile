@@ -44,8 +44,7 @@ workspace:
 
 # Wipes out build artifacts
 clean:
-	rm -rf $(WORKSPACE)/pkg/*
-	rm -rf $(WORKSPACE)/bin/*
+	rm -rf $(WORKSPACE)
 
 # Wipes out the workspace
 clean-workspace: clean
