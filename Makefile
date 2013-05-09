@@ -16,7 +16,7 @@ build: test
 
 # Run tests in root, and non {WORKSPACE .git} subdirs
 # of the root
-test: deps
+test: 
 	@GOPATH=$(WORKSPACE) go test $(PACKAGE)
 	@GOPATH=$(WORKSPACE) find . -d 1 -type d \
 									 -not -name WORKSPACE \
@@ -24,16 +24,12 @@ test: deps
 		-exec go test $(PACKAGE)/{}  \;
 
 # Run "go fmt" on likely packages
-fmt: deps
+fmt:
 	@GOPATH=$(WORKSPACE) go fmt $(PACKAGE)
 	@GOPATH=$(WORKSPACE) find . -d 1 -type d \
 									 -not -name WORKSPACE \
 									 -not -name .git \
 		-exec go fmt $(PACKAGE)/{}  \;
-
-# Fetch dependencies
-deps: workspace
-	GOPATH=$(WORKSPACE) go get $(PACKAGE)
 
 # Build the Go workspace and symlink this project into
 # it at the correct place.
@@ -85,3 +81,7 @@ docserver: deps
 # Convenience to make sure PACKAGE is being picked up correctly
 check-sanity:
 	@echo "PACKAGE=$(PACKAGE)"
+
+
+newspace:
+	find . -type d ! -path ./WORKSPACE\* -a ! -path ./.git\* -exec mkdir -p "./WORKSPACE/$(PACKAGE)/{}" \;
